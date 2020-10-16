@@ -97,6 +97,11 @@ L.Map.SmoothWheelZoom = L.Handler.extend({
         map._move(this._center, this._zoom);
         this._prevCenter = map.getCenter();
         this._prevZoom = map.getZoom();
+        map.fire('zoomanim', {
+            center: this._center,
+            zoom: this._zoom,
+            noUpdate: true
+        });
 
         this._zoomAnimationId = requestAnimationFrame(this._updateWheelZoom.bind(this));
     }
